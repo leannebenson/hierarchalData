@@ -1,0 +1,19 @@
+{% load mptt_tags %}
+<h3> Hello {{request.user}}!</h3>
+<a href="/">Home</a> <a href="login/">Login</a> <a href="logout/">Logout</a>
+<button type="button"><a href="/addfile/">Click to add a new File</a></button>
+<h1>Hierarchal Data Assessment</h1>
+
+<ul>
+    {% recursetree files %}
+    <li>
+        {{ node.name }} {% if not node.is_leaf_node %}
+        <ul class="children">
+            {{ children }}
+        </ul>
+        {% endif %}
+    </li>
+    {% endrecursetree %}
+</ul>
+
+<button type="button"><a href="/addfile/">Click to add a new File</a></button>
